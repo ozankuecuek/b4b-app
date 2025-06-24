@@ -97,7 +97,13 @@ export class IdentityPlatformService {
       const tenantAuth = adminAuth.tenantManager().authForTenant(tenantId);
       
       // Prepare user creation data
-      const userCreationData: any = {
+      const userCreationData: {
+        email: string;
+        password: string;
+        displayName: string;
+        emailVerified: boolean;
+        phoneNumber?: string;
+      } = {
         email: userData.email,
         password: userData.password,
         displayName: userData.displayName,
