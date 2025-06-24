@@ -1,6 +1,6 @@
 import { adminDb } from './firebase-admin';
 import { CompanyData, UserData } from './identity-platform';
-import { Timestamp } from 'firebase-admin/firestore';
+import { Timestamp, FieldValue } from 'firebase-admin/firestore';
 
 export interface CompanyDocument extends CompanyData {
   tenantId: string;
@@ -180,7 +180,7 @@ export class FirestoreService {
   async incrementUserCount(tenantId: string): Promise<void> {
     try {
       await adminDb.collection('companies').doc(tenantId).update({
-        userCount: adminDb.FieldValue.increment(1),
+        userCount: FieldValue.increment(1),
         updatedAt: Timestamp.now(),
       });
     } catch (error) {
