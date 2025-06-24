@@ -2,10 +2,27 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { APITestSection } from "@/components/APITestSection";
+import Link from "next/link";
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-background">
+      {/* Navigation Header */}
+      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <div className="container mx-auto px-4 h-16 flex items-center justify-between">
+          <div className="flex items-center space-x-2">
+            <h2 className="text-lg font-semibold">Design System</h2>
+          </div>
+          <nav className="flex items-center space-x-4">
+            <Link href="/register">
+              <Button variant="default">
+                Register
+              </Button>
+            </Link>
+          </nav>
+        </div>
+      </header>
+
       <div className="container mx-auto px-4 py-16 space-y-16">
         {/* Header */}
         <div className="text-center">
@@ -15,6 +32,16 @@ export default function Home() {
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             A comprehensive showcase of our custom color palette and component library built with Next.js, TypeScript, and Tailwind CSS.
           </p>
+          <div className="mt-8">
+            <p className="text-lg text-muted-foreground mb-4">
+              🚀 <strong>New:</strong> B2B Registration with Multi-Tenant Authentication
+            </p>
+            <Link href="/register">
+              <Button size="lg" className="mr-4">
+                Try B2B Registration
+              </Button>
+            </Link>
+          </div>
         </div>
 
         {/* API Testing Section */}
