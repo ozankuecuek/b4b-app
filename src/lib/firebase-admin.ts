@@ -21,35 +21,10 @@ function initializeFirebaseAdmin() {
   }
 }
 
-// Lazy initialization to avoid build-time issues
-let app: ReturnType<typeof initializeFirebaseAdmin> | null = null;
-let auth: ReturnType<typeof getAuth> | null = null;
-let db: ReturnType<typeof getFirestore> | null = null;
+// Initialize the app
+const app = initializeFirebaseAdmin();
 
-function getApp() {
-  if (!app) {
-    app = initializeFirebaseAdmin();
-  }
-  return app;
-}
-
-// Lazy exports to prevent initialization during build
-export const adminAuth = new Proxy({} as ReturnType<typeof getAuth>, {
-  get(target, prop) {
-    if (!auth) {
-      auth = getAuth(getApp());
-    }
-    return auth[prop as keyof typeof auth];
-  }
-});
-
-export const adminDb = new Proxy({} as ReturnType<typeof getFirestore>, {
-  get(target, prop) {
-    if (!db) {
-      db = getFirestore(getApp());
-    }
-    return db[prop as keyof typeof db];
-  }
-});
-
-export default getApp; 
+// Direct exports - no lazy loading to avoid "Client not ready" errors
+export const adminAuth = getAuth(app);
+export const adminDb = getFirestore(app);
+export default app; 
