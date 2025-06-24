@@ -42,7 +42,6 @@ export class FirestoreService {
   async saveUserProfile(tenantId: string, userId: string, userData: Partial<UserData>, role: 'admin' | 'user' = 'admin'): Promise<void> {
     try {
       // Remove sensitive data like password before saving
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { password: _, ...profileData } = userData as UserData;
       
       const userDoc: UserDocument = {

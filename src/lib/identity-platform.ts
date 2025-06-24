@@ -29,7 +29,25 @@ export class IdentityPlatformService {
   private projectId: string;
 
   constructor() {
-    this.projectId = process.env.FIREBASE_PROJECT_ID!;
+    // Use Firebase App Hosting config first, fall back to local env
+    if (process.env.FIREBASE_CONFIG) {
+      try {
+        const firebaseConfig = JSON.parse(process.env.FIREBASE_CONFIG);
+        this.projectId = firebaseConfig.projectId;
+        console.log('Using project ID from FIREBASE_CONFIG:', this.projectId);
+      } catch {
+        console.warn('Failed to parse FIREBASE_CONFIG, falling back to FIREBASE_PROJECT_ID');
+        this.projectId = process.env.FIREBASE_PROJECT_ID!;
+      }
+    } else {
+      // Local development fallback
+      this.projectId = process.env.FIREBASE_PROJECT_ID!;
+      console.log('Using project ID from FIREBASE_PROJECT_ID:', this.projectId);
+    }
+    
+    if (!this.projectId) {
+      throw new Error('Project ID not found in either FIREBASE_CONFIG or FIREBASE_PROJECT_ID');
+    }
   }
 
   // Sanitize company name for Firebase tenant displayName
