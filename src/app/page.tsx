@@ -288,7 +288,7 @@ const modernTypography = {
                     <li>Optimized spacing and line heights for readability</li>
                     <li>Enhanced font features and ligatures</li>
                   </ul>
-                  <p className="text-sm text-muted-foreground">List • my-6 ml-6 list-disc [&>li]:mt-2</p>
+                  <p className="text-sm text-muted-foreground">List • my-6 ml-6 list-disc [&gt;li]:mt-2</p>
                 </div>
               </div>
 
