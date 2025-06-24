@@ -1,6 +1,6 @@
 {
   "apphosting": {
-    "backendId": "b4b-backend",
+    "backendId": "b4b-application",
     "rootDir": "/",
     "ignore": [
       "node_modules",
