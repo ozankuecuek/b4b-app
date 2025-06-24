@@ -33,6 +33,11 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
+# firebase service account keys
+service-account-key.json
+*-firebase-adminsdk-*.json
+# Add your renamed service account file here if it doesn't match the patterns above
+
 # vercel
 .vercel
 
